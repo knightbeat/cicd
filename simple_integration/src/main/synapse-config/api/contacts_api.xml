@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/contacts" name="contacts_api" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" protocol="http" uri-template="/addresses/{customerId}">
+        <inSequence>
+            <sequence key="record_accept_header_sequence"/>
+            <property expression="get-property('uri.var.customerId')" name="customerId" scope="default" type="STRING"/>
+            <payloadFactory media-type="json">
+                <format>{"message":"test message"}</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
