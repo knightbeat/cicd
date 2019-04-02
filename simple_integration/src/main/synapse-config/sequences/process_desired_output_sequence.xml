@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="process_desired_output_sequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="xml">
+        <format>
+            <esb:registration xmlns:esb="http://esb.datatoapi.com">
+                <esb:subjectCode>$1</esb:subjectCode>
+                <esb:generatedAt>$2</esb:generatedAt>
+				$3
+			</esb:registration>
+        </format>
+        <args>
+            <arg evaluator="xml" expression="get-property('subject_code')" xmlns:ns="http://org.apache.synapse/xsd"/>
+            <arg evaluator="xml" expression="syn:get-property('SYSTEM_DATE','yyyy-MM-dd G HH:mm:ss z')" xmlns:ns="http://org.apache.synapse/xsd"/>
+            <arg evaluator="xml" expression="//a:enrolments" xmlns:a="http://esb.datatoapi.com" xmlns:ns="http://org.apache.synapse/xsd"/>
+        </args>
+    </payloadFactory>
+</sequence>

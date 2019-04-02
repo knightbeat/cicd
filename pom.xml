@@ -10,6 +10,7 @@
   <description>cicd</description>
   <modules>
     <module>simple_integration</module>
+    <module>simple_integration_data_service</module>
     <module>simple_integration_composite</module>
   </modules>
   <build>

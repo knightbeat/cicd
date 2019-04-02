@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/registrations" name="registration_office_api" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" protocol="http" uri-template="/enrolments/{subjectCode}">
+        <inSequence>
+            <property expression="get-property('uri.var.subjectCode')" name="subject_code" scope="default" type="STRING"/>
+            <property name="ROOT" scope="default">
+                <p:enrolments xmlns:p="http://esb.datatoapi.com"/>
+            </property>
+            <sequence key="course_information_data_service_call_sequence"/>
+            <sequence key="student_information_data_service_call_sequence"/>
+            <aggregate>
+                <completeCondition>
+                    <messageCount max="-1" min="-1"/>
+                </completeCondition>
+                <onComplete enclosingElementProperty="ROOT" expression="//a:student" xmlns:a="http://ds.dbtoapi.com">
+                    <log level="full"/>
+                </onComplete>
+            </aggregate>
+            <sequence key="process_desired_output_sequence"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="course_information_data_service_ep" xmlns="http://ws.apache.org/ns/synapse">
+    <address format="soap11" uri="http://localhost:9763/services/CourseInformationDataService"/>
+</endpoint>

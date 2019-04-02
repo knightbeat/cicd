@@ -1,0 +1,22 @@
+.
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Committer: Chathura Kulasinghe <ck@chathuras-mbp.home>
+#
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#	new file:   pom.xml
+#	new file:   simple_integration/.project
+#	new file:   simple_integration/artifact.xml
+#	new file:   simple_integration/pom.xml
+#	new file:   simple_integration/src/main/synapse-config/api/contacts_api.xml
+#	new file:   simple_integration_composite/.project
+#	new file:   simple_integration_composite/pom.xml
+#
+# Untracked files:
+#	.project
+#

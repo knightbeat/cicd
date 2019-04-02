@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="student_information_data_service_call_sequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <iterate expression="//e:enrolments/e:enrolment" xmlns:e="http://ds.dbtoapi.com" xmlns:ns="http://org.apache.synapse/xsd">
+        <target>
+            <sequence>
+                <log level="custom">
+                    <property expression="//p:studentId/text()" name="Student Name" xmlns:p="http://ds.dbtoapi.com"/>
+                </log>
+                <payloadFactory media-type="xml">
+                    <format>
+                        <p:getStudentById xmlns:p="http://ds.dbtoapi.com">
+                            <p:studentId>$1</p:studentId>
+                        </p:getStudentById>
+                    </format>
+                    <args>
+                        <arg evaluator="xml" expression="//p:studentId/text()" xmlns:p="http://ds.dbtoapi.com"/>
+                    </args>
+                </payloadFactory>
+                <property name="SOAPAction" scope="transport" type="STRING" value="urn:getStudentById"/>
+                <call>
+                    <endpoint key="student_information_data_service_ep"/>
+                </call>
+            </sequence>
+        </target>
+    </iterate>
+</sequence>

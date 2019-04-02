@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="course_information_data_service_call_sequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log>
+        <property expression="get-property('subject_code')" name="subject_code" xmlns:ns="http://org.apache.synapse/xsd"/>
+    </log>
+    <payloadFactory media-type="xml">
+        <format>
+            <p:getEnrolmentsBySubject xmlns:p="http://ds.dbtoapi.com">
+                <p:subjectCode>$1</p:subjectCode>
+            </p:getEnrolmentsBySubject>
+        </format>
+        <args>
+            <arg evaluator="xml" expression="get-property('subject_code')" xmlns:ns="http://org.apache.synapse/xsd"/>
+        </args>
+    </payloadFactory>
+    <property name="SOAPAction" scope="transport" type="STRING" value="urn:getEnrolmentsBySubject"/>
+    <call>
+        <endpoint key="course_information_data_service_ep"/>
+    </call>
+</sequence>
