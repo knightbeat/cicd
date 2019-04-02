@@ -5,7 +5,7 @@
             <sequence key="record_accept_header_sequence"/>
             <property expression="get-property('uri.var.customerId')" name="customerId" scope="default" type="STRING"/>
             <payloadFactory media-type="json">
-                <format>{"message":$1}</format>
+                <format>{"message":"$1"}</format>
                 <args>
                     <arg evaluator="xml" expression="get-property('customerId')"/>
                 </args>
