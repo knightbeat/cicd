@@ -2,7 +2,10 @@
 <api context="/contacts" name="contacts_api" xmlns="http://ws.apache.org/ns/synapse">
     <resource methods="GET" protocol="http" uri-template="/addresses/{customerId}">
         <inSequence>
-            <sequence key="record_accept_header_sequence"/>
+            <property expression="get-property('transport','Accept')" name="accept_header" scope="default" type="STRING"/>
+            <log level="custom">
+                <property expression="get-property('accept_header')" name="CLIENT EXPECTS RESPONSE IN"/>
+            </log>
             <property expression="get-property('uri.var.customerId')" name="customerId" scope="default" type="STRING"/>
             <payloadFactory media-type="json">
                 <format>{"message":"$1"}</format>
@@ -10,8 +13,9 @@
                     <arg evaluator="xml" expression="get-property('customerId')"/>
                 </args>
             </payloadFactory>
+            <property expression="get-property('accept_header')" name="messageType" scope="axis2" type="STRING"/>
             <log level="custom">
-                <property name="body" value="Test"/>
+                <property expression="get-property('accept_header')" name="CONTENT-TYPE CHANGED TO"/>
             </log>
             <respond/>
         </inSequence>
