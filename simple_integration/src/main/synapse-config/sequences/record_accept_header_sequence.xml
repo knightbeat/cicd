@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="record_accept_header_sequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property expression="get-property('transport','Accept')" name="accept_header" scope="default" type="STRING"/>
+    <log level="custom">
+        <property expression="get-property('accept_header')" name="CLIENT EXPECTS RESPONSE IN"/>
+    </log>
+    <property name="Accept" scope="transport" type="STRING" value="application/xml"/>
+</sequence>

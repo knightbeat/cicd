@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="apply_accept_header_sequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property expression="get-property('accept_header')" name="messageType" scope="axis2" type="STRING"/>
+    <log level="custom">
+        <property expression="get-property('accept_header')" name="CONTENT-TYPE CHANGED TO"/>
+    </log>
+</sequence>

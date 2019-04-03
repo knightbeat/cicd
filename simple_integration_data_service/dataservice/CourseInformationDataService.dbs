@@ -1,0 +1,103 @@
+<data name="CourseInformationDataService" serviceNamespace="http://ds.dbtoapi.com" transports="http https">
+    <config id="default">
+        <property name="carbon_datasource_name">WSO2_STUDENT_LOAN_DB</property>
+    </config>
+    <query id="insert_ENROLMENTS_query" returnGeneratedKeys="true" useConfig="default">
+        <sql>INSERT INTO ENROLMENTS(STUDENT_ID,ENROLMENT_TIME,SUBJECT) VALUES(?,?,?)</sql>
+        <result element="GeneratedKeys" rowName="Entry" useColumnNumbers="true">
+            <element column="1" name="ID" xsdType="integer"/>
+        </result>
+        <param name="STUDENT_ID" ordinal="1" sqlType="STRING"/>
+        <param name="ENROLMENT_TIME" ordinal="2" sqlType="STRING"/>
+        <param name="SUBJECT" ordinal="3" sqlType="STRING"/>
+    </query>
+    <query id="update_ENROLMENTS_query" useConfig="default">
+        <sql>UPDATE ENROLMENTS SET STUDENT_ID=?,ENROLMENT_TIME=?,SUBJECT=? WHERE REC_ID=?</sql>
+        <result element="UpdatedRowCount" rowName="" useColumnNumbers="true">
+            <element column="1" name="Value" xsdType="integer"/>
+        </result>
+        <param name="STUDENT_ID" ordinal="1" sqlType="STRING"/>
+        <param name="ENROLMENT_TIME" ordinal="2" sqlType="STRING"/>
+        <param name="SUBJECT" ordinal="3" sqlType="STRING"/>
+        <param name="REC_ID" ordinal="4" sqlType="INTEGER"/>
+    </query>
+    <query id="select_with_key_ENROLMENTS_query" useConfig="default">
+        <sql>SELECT REC_ID, STUDENT_ID, ENROLMENT_TIME, SUBJECT FROM ENROLMENTS WHERE SUBJECT=?</sql>
+        <result element="enrolments" rowName="enrolment">
+            <element column="REC_ID" name="recordId" xsdType="xs:integer"/>
+            <element column="STUDENT_ID" name="studentId" xsdType="xs:string"/>
+            <element column="ENROLMENT_TIME" name="enrolmentTime" xsdType="xs:string"/>
+            <element column="SUBJECT" name="subjectCode" xsdType="xs:string"/>
+        </result>
+        <param name="SUBJECT" ordinal="1" sqlType="STRING"/>
+    </query>
+    <query id="select_all_ENROLMENTS_query" useConfig="default">
+        <sql>SELECT REC_ID, STUDENT_ID, ENROLMENT_TIME, SUBJECT FROM ENROLMENTS</sql>
+        <result element="enrolments" rowName="enrolment">
+            <element column="REC_ID" name="recordId" xsdType="xs:integer"/>
+            <element column="STUDENT_ID" name="studentId" xsdType="xs:string"/>
+            <element column="ENROLMENT_TIME" name="enrolmentTime" xsdType="xs:string"/>
+            <element column="SUBJECT" name="subjectCode" xsdType="xs:string"/>
+        </result>
+    </query>
+    <query id="delete_ENROLMENTS_query" useConfig="default">
+        <sql>DELETE FROM ENROLMENTS WHERE REC_ID=?</sql>
+        <param name="REC_ID" ordinal="1" sqlType="INTEGER"/>
+    </query>
+    <operation name="getEnrolments">
+        <call-query href="select_all_ENROLMENTS_query"/>
+    </operation>
+    <operation name="deleteEnrolment">
+        <call-query href="delete_ENROLMENTS_query">
+            <with-param name="REC_ID" query-param="recordId"/>
+        </call-query>
+    </operation>
+    <operation name="updateEnrolment">
+        <call-query href="update_ENROLMENTS_query">
+            <with-param name="REC_ID" query-param="recordId"/>
+            <with-param name="ENROLMENT_TIME" query-param="enrolmentTime"/>
+            <with-param name="SUBJECT" query-param="subjectCode"/>
+            <with-param name="STUDENT_ID" query-param="studentId"/>
+        </call-query>
+    </operation>
+    <operation name="insertEnrolment">
+        <call-query href="insert_ENROLMENTS_query">
+            <with-param name="ENROLMENT_TIME" query-param="enrolmentTime"/>
+            <with-param name="SUBJECT" query-param="subjectCode"/>
+            <with-param name="STUDENT_ID" query-param="studentId"/>
+        </call-query>
+    </operation>
+    <operation name="getEnrolmentsBySubject">
+        <call-query href="select_with_key_ENROLMENTS_query">
+            <with-param name="SUBJECT" query-param="subjectCode"/>
+        </call-query>
+    </operation>
+    <resource method="GET" path="/enrolments/{subjectCode}">
+        <call-query href="select_with_key_ENROLMENTS_query">
+            <with-param name="SUBJECT" query-param="subjectCode"/>
+        </call-query>
+    </resource>
+    <resource method="POST" path="/enrolments">
+        <call-query href="insert_ENROLMENTS_query">
+            <with-param name="STUDENT_ID" query-param="studentId"/>
+            <with-param name="ENROLMENT_TIME" query-param="enrolmentTime"/>
+            <with-param name="SUBJECT" query-param="subjectCode"/>
+        </call-query>
+    </resource>
+    <resource method="PUT" path="/enrolments">
+        <call-query href="update_ENROLMENTS_query">
+            <with-param name="STUDENT_ID" query-param="studentId"/>
+            <with-param name="ENROLMENT_TIME" query-param="enrolmentTime"/>
+            <with-param name="SUBJECT" query-param="subjectCode"/>
+            <with-param name="REC_ID" query-param="recordId"/>
+        </call-query>
+    </resource>
+    <resource method="DELETE" path="/enrolments/{recordId}">
+        <call-query href="delete_ENROLMENTS_query">
+            <with-param name="REC_ID" query-param="recordId"/>
+        </call-query>
+    </resource>
+    <resource method="GET" path="/enrolments">
+        <call-query href="select_all_ENROLMENTS_query"/>
+    </resource>
+</data>

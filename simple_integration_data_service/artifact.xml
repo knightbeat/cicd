@@ -1,1 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><artifacts/>
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="StudentLoansDataService" groupId="com.example.simple_integration_data_service.dataservice" version="1.0.0" type="service/dataservice" serverRole="DataServicesServer">
+        <file>dataservice/StudentLoansDataService.dbs</file>
+    </artifact>
+    <artifact name="CourseInformationDataService" groupId="com.example.simple_integration_data_service.dataservice" version="1.0.0" type="service/dataservice" serverRole="DataServicesServer">
+        <file>dataservice/CourseInformationDataService.dbs</file>
+    </artifact>
+    <artifact name="StudentInformationDataService" groupId="com.example.simple_integration_data_service.dataservice" version="1.0.0" type="service/dataservice" serverRole="DataServicesServer">
+        <file>dataservice/StudentInformationDataService.dbs</file>
+    </artifact>
+</artifacts>

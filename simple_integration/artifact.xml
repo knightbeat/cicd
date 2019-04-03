@@ -2,4 +2,28 @@
     <artifact name="contacts_api" groupId="com.example.simple_integration.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/contacts_api.xml</file>
     </artifact>
+    <artifact name="course_information_data_service_ep" groupId="com.example.simple_integration.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/course_information_data_service_ep.xml</file>
+    </artifact>
+    <artifact name="student_information_data_service_ep" groupId="com.example.simple_integration.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/student_information_data_service_ep.xml</file>
+    </artifact>
+    <artifact name="course_information_data_service_call_sequence" groupId="com.example.simple_integration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/course_information_data_service_call_sequence.xml</file>
+    </artifact>
+    <artifact name="process_desired_output_sequence" groupId="com.example.simple_integration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/process_desired_output_sequence.xml</file>
+    </artifact>
+    <artifact name="student_information_data_service_call_sequence" groupId="com.example.simple_integration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/student_information_data_service_call_sequence.xml</file>
+    </artifact>
+    <artifact name="registration_office_api" groupId="com.example.simple_integration.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/registration_office_api.xml</file>
+    </artifact>
+    <artifact name="record_accept_header_sequence" groupId="com.example.simple_integration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/record_accept_header_sequence.xml</file>
+    </artifact>
+    <artifact name="apply_accept_header_sequence" groupId="com.example.simple_integration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/apply_accept_header_sequence.xml</file>
+    </artifact>
 </artifacts>

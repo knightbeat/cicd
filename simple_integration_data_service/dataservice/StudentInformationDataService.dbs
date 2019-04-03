@@ -1,0 +1,100 @@
+<data name="StudentInformationDataService" serviceNamespace="http://ds.dbtoapi.com" transports="http https">
+    <config id="default">
+        <property name="carbon_datasource_name">WSO2_STUDENT_LOAN_DB</property>
+    </config>
+    <query id="update_STUDENTS_query" useConfig="default">
+        <sql>UPDATE STUDENTS SET FIRST_NAME=?,LAST_NAME=?,DATE_OF_BIRTH=? WHERE STUDENT_ID=?</sql>
+        <param name="FIRST_NAME" ordinal="1" sqlType="STRING"/>
+        <param name="LAST_NAME" ordinal="2" sqlType="STRING"/>
+        <param name="DATE_OF_BIRTH" ordinal="3" sqlType="STRING"/>
+        <param name="STUDENT_ID" ordinal="4" sqlType="STRING"/>
+    </query>
+    <query id="delete_STUDENTS_query" useConfig="default">
+        <sql>DELETE FROM STUDENTS WHERE STUDENT_ID=?</sql>
+        <param name="STUDENT_ID" ordinal="1" sqlType="STRING"/>
+    </query>
+    <query id="insert_STUDENTS_query" useConfig="default">
+        <sql>INSERT INTO STUDENTS(STUDENT_ID,FIRST_NAME,LAST_NAME,DATE_OF_BIRTH) VALUES(?,?,?,?)</sql>
+        <param name="STUDENT_ID" ordinal="1" sqlType="STRING"/>
+        <param name="FIRST_NAME" ordinal="2" sqlType="STRING"/>
+        <param name="LAST_NAME" ordinal="3" sqlType="STRING"/>
+        <param name="DATE_OF_BIRTH" ordinal="4" sqlType="STRING"/>
+    </query>
+    <query id="select_all_STUDENTS_query" useConfig="default">
+        <sql>SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, DATE_OF_BIRTH FROM STUDENTS</sql>
+        <result element="students" rowName="student">
+            <element column="STUDENT_ID" name="studentId" xsdType="xs:string"/>
+            <element column="FIRST_NAME" name="firstName" xsdType="xs:string"/>
+            <element column="LAST_NAME" name="lastName" xsdType="xs:string"/>
+            <element column="DATE_OF_BIRTH" name="dateOfBirth" xsdType="xs:string"/>
+        </result>
+    </query>
+    <query id="select_with_key_STUDENTS_query" useConfig="default">
+        <sql>SELECT STUDENT_ID, FIRST_NAME, LAST_NAME, DATE_OF_BIRTH FROM STUDENTS WHERE STUDENT_ID=?</sql>
+        <result element="students" rowName="student">
+            <element column="STUDENT_ID" name="studentId" xsdType="xs:string"/>
+            <element column="FIRST_NAME" name="firstName" xsdType="xs:string"/>
+            <element column="LAST_NAME" name="lastName" xsdType="xs:string"/>
+            <element column="DATE_OF_BIRTH" name="dateOfBirth" xsdType="xs:string"/>
+        </result>
+        <param name="STUDENT_ID" ordinal="1" sqlType="STRING"/>
+    </query>
+    <operation name="getStudentById">
+        <call-query href="select_with_key_STUDENTS_query">
+            <with-param name="STUDENT_ID" query-param="studentId"/>
+        </call-query>
+    </operation>
+    <operation name="insertStudent">
+        <call-query href="insert_STUDENTS_query">
+            <with-param name="LAST_NAME" query-param="lastName"/>
+            <with-param name="DATE_OF_BIRTH" query-param="dateOfBirth"/>
+            <with-param name="FIRST_NAME" query-param="firstName"/>
+            <with-param name="STUDENT_ID" query-param="studentId"/>
+        </call-query>
+    </operation>
+    <operation name="updateStudent">
+        <call-query href="update_STUDENTS_query">
+            <with-param name="LAST_NAME" query-param="lastName"/>
+            <with-param name="DATE_OF_BIRTH" query-param="dateOfBirth"/>
+            <with-param name="FIRST_NAME" query-param="firstName"/>
+            <with-param name="STUDENT_ID" query-param="studentId"/>
+        </call-query>
+    </operation>
+    <operation name="deleteStudent">
+        <call-query href="delete_STUDENTS_query">
+            <with-param name="STUDENT_ID" query-param="studentId"/>
+        </call-query>
+    </operation>
+    <operation name="getStudents">
+        <call-query href="select_all_STUDENTS_query"/>
+    </operation>
+    <resource method="POST" path="/students">
+        <call-query href="insert_STUDENTS_query">
+            <with-param name="STUDENT_ID" query-param="studentId"/>
+            <with-param name="FIRST_NAME" query-param="firstName"/>
+            <with-param name="LAST_NAME" query-param="lastName"/>
+            <with-param name="DATE_OF_BIRTH" query-param="dateOfBirth"/>
+        </call-query>
+    </resource>
+    <resource method="PUT" path="/students">
+        <call-query href="update_STUDENTS_query">
+            <with-param name="FIRST_NAME" query-param="firstName"/>
+            <with-param name="LAST_NAME" query-param="lastName"/>
+            <with-param name="DATE_OF_BIRTH" query-param="dateOfBirth"/>
+            <with-param name="STUDENT_ID" query-param="studentId"/>
+        </call-query>
+    </resource>
+    <resource method="DELETE" path="/students/{STUDENT_ID}">
+        <call-query href="delete_STUDENTS_query">
+            <with-param name="STUDENT_ID" query-param="studentId"/>
+        </call-query>
+    </resource>
+    <resource method="GET" path="/students/{STUDENT_ID}">
+        <call-query href="select_with_key_STUDENTS_query">
+            <with-param name="STUDENT_ID" query-param="studentId"/>
+        </call-query>
+    </resource>
+    <resource method="GET" path="/students">
+        <call-query href="select_all_STUDENTS_query"/>
+    </resource>
+</data>
