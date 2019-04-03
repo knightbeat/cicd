@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/contact" name="delivery_api" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/address/{customerId}">
+        <inSequence>
+            <property expression="get-property('uri.var.customerId')" name="uri.var.customerId" scope="default" type="STRING"/>
+            <log level="custom">
+                <property expression="get-property('uri.var.customerId')" name="uri.var.customerId"/>
+            </log>
+            <call>
+                <endpoint key="contacts_service_ep"/>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

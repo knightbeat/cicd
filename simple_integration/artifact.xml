@@ -29,4 +29,7 @@
     <artifact name="contacts_service_ep" groupId="com.example.simple_integration.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/endpoints/contacts_service_ep.xml</file>
     </artifact>
+    <artifact name="delivery_api" groupId="com.example.simple_integration.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/delivery_api.xml</file>
+    </artifact>
 </artifacts>
