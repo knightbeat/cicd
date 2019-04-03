@@ -26,4 +26,7 @@
     <artifact name="apply_accept_header_sequence" groupId="com.example.simple_integration.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/apply_accept_header_sequence.xml</file>
     </artifact>
+    <artifact name="contacts_service_ep" groupId="com.example.simple_integration.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/contacts_service_ep.xml</file>
+    </artifact>
 </artifacts>

@@ -163,6 +163,30 @@
         </executions>
         <configuration />
       </plugin>
+      <plugin>
+	    <groupId>com.google.code.maven-replacer-plugin</groupId>
+	    <artifactId>replacer</artifactId>
+	    <version>1.5.3</version>
+	    <executions>
+	        <execution>
+	            <phase>package</phase>
+	            <goals>
+	                <goal>replace</goal>
+	            </goals>
+	        </execution>
+	    </executions>
+	    <configuration>
+	        <includes>
+	            <include>${basedir}/target/**/*.xml</include>
+	        </includes>
+	        <replacements>
+	            <replacement>
+	                <token>@ContactsServiceHostPort</token>
+	                <value>${course.host.port}</value>
+	            </replacement>
+	        </replacements>
+	    </configuration>
+	</plugin>
     </plugins>
   </build>
 </project>

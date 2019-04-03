@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="contacts_service_ep" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="get" uri-template="@ContactsServiceHostPort"/>
+</endpoint>
