@@ -182,7 +182,7 @@
 	        <replacements>
 	            <replacement>
 	                <token>@ContactsServiceHostPort</token>
-	                <value>${course.host.port}</value>
+	                <value>http://${course.host.port}/deliveries/addresses/{uri.var.customerId}</value>
 	            </replacement>
 	        </replacements>
 	    </configuration>
